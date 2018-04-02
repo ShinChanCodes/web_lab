@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="source/datepickr.min.css">
+<title>Insert title here</title>
+	<script src="myscripts.js"></script> 
+	<link rel="stylesheet" type="text/css" href="calendar.css">
+	
+	<style>
+	
+		body {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+		
+		form {
+			margin-left: 210px;
+			margin-top: 60px;
+		}
+		
+		input {
+			margin: 5px 5px 5px 25px;
+			border-radius: 4px;
+			padding: 5px;
+		}
+		
+		sup {
+			color: red;
+		}
+		#StartDate{
+			margin-left:53px;
+		}
+		#EndDate{
+			margin-left:58px;	
+		}
+		#RootFile{
+			margin-left:52px;	
+		}
+		#hed {
+			margin-left: 20px;
+			font-family: serif;
+		}
+		#myDIV {
+			margin-left: 200px;
+ 	   		width: 200px;
+    		height: 100px;
+    		border: 1px solid black;
+		}
+	</style>
+
+	<script type="text/javascript">
+        function ValidationEvent() {
+			var num = 0;
+            var message = "";
+            if(document.getElementById("SerialNo").value == "") {
+                message += "- The Iteration ID Column cannot be EMPTY \n";
+                num = 1;
+            } 
+            if( document.getElementById("StartDate").value == "") {
+                message += "- The Start Date column cannot be EMPTY \n";
+                num = 1;
+            }
+            if(document.getElementById("EndDate").value == "") {
+                message += "- The End Date column cannot be EMPTY \n";
+                num = 1;
+            }
+            if(document.getElementById("RootFile").value == "") {
+                message += "- The Root fields cannot be empty \n";
+                num = 1;
+            }   
+            
+            if (num == 1) { 
+                alert ("Please complete the following required fields: \n\n"+message);
+                return false;
+            } 
+            else {
+				return true;
+            
+        	} 
+    	}	
+	
+	</script>
+
+
+</head>
+<body>
+	
+	<h2 id="hed">Form Validation Example</h2>
+	
+	<div class="Iteration">
+	
+		<form id="myform" method="post" action="xx.html" onsubmit="return ValidationEvent()">
+			
+			Serial Number<sup>*</sup> 
+			<input id="SerialNo" type="text" name="SerialNo" placeholder="Serial No" > <br>
+			
+			Start Date<sup>*</sup> 
+			<!-- <input id="START_DATE" name="START_DATE" placeholder="Iteration Start Date" >-->
+			
+			<input id="StartDate" name="StartDate" />
+			<input id="START_DATE" type=button value="select" onclick="displayDatePicker('StartDate');">
+			
+			
+			<br> 
+			
+			End Date<sup>*</sup>
+			<!-- <input id="END_DATE" name="END_DATE" placeholder="Iteration End Date">-->
+			
+			<input id="EndDate" name="EndDate" />
+			<input id="END_DATE" type=button value="select" onclick="displayDatePicker('EndDate', this);">
+						
+			<br> 
+			
+			Directory. <sup>*</sup> 
+			<input id="RootFile" type="text" name="RootFile" placeholder="Directory"> <br>
+			<br>
+			
+			<div id="Btns">
+				<input id="Exporter" type="submit" value="Export ">
+				<input id="set" type="reset">
+			</div>
+		</form>
+		<div id="myDIV"></div>
+		<p id="demo"></p>
+		<script>
+			document.getElementById("myDIV").addEventListener("mousemove", function(event) {
+			    myFunction(event);
+			});
+
+			function myFunction(e) {
+			    var x = e.clientX;
+			    var y = e.clientY;
+			    var coor = "Coordinates: (" + x + "," + y + ")";
+			    document.getElementById("demo").innerHTML = coor;
+			}
+		</script>
+
+	</div>
+	
+
+</body>
+</html>
